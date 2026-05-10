@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_DB: ufologia
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${UFOLOGIA_DB_PASSWORD:-12345}
+      POSTGRES_PASSWORD: ${UFOLOGIA_DB_PASSWORD:?set UFOLOGIA_DB_PASSWORD}
     ports:
       - "${UFOLOGIA_DB_PORT:-5432}:5432"
     volumes:

@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import gzip
 import json
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -17,7 +18,10 @@ from urllib.request import Request, urlopen
 from sqlalchemy import create_engine, text
 
 
-DATABASE_URL = "postgresql+psycopg2://postgres:12345@localhost:5432/ufologia"
+DATABASE_URL = os.environ.get(
+    "DATABASE_URL",
+    "postgresql+psycopg2://postgres:postgres@localhost:5432/ufologia",
+)
 SCHEMA = "public"
 OUTPUT_HTML = Path("mapa_casos_brasileiros.html")
 BRASIL_GEOJSON = Path("output/brasil_ufs_ibge.geojson")
