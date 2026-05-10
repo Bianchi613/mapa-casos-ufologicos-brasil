@@ -1,0 +1,16 @@
+services:
+  ufologia-db:
+    image: ufologia-postgres:2026-05-10
+    container_name: ufologia-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ufologia
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${UFOLOGIA_DB_PASSWORD:-12345}
+    ports:
+      - "${UFOLOGIA_DB_PORT:-5432}:5432"
+    volumes:
+      - ufologia_pgdata:/var/lib/postgresql/data
+
+volumes:
+  ufologia_pgdata:

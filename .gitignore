@@ -1,0 +1,11 @@
+.vscode/
+__pycache__/
+*.py[cod]
+
+# Docker images/packages are too large for GitHub and can be rebuilt or stored elsewhere.
+docker/*.tar
+docker/*.tar.gz
+
+# Local/editor/runtime noise.
+.DS_Store
+*.log
