@@ -1,5 +1,7 @@
 # Mapa de Casos Ufológicos Brasileiros
 
+![Mapa de Casos Ufológicos Brasileiros](assets/mapa-casos-ufologicos-brasil.png)
+
 Este projeto publica um mapa HTML estático com casos ufológicos brasileiros. O site fica rodando em uma VM Oracle e o HTML é gerado a partir de um banco PostgreSQL local em Docker.
 
 ## Endereço do site
