@@ -540,6 +540,7 @@ def render_html(
       width: min(390px, calc(100vw - 36px));
       grid-template-rows: auto;
     }}
+    .panel.collapsed .stats,
     .panel.collapsed .controls,
     .panel.collapsed .results {{
       display: none;
@@ -935,27 +936,130 @@ def render_html(
       font-size: 11px;
     }}
     @media (max-width: 720px) {{
+      .leaflet-control-zoom {{
+        display: none;
+      }}
       .panel {{
-        left: 10px;
-        right: 10px;
-        top: 10px;
+        left: 8px;
+        right: 8px;
+        top: 8px;
         bottom: auto;
-        max-height: 46vh;
+        max-height: 42vh;
+        width: auto;
+        border-radius: 8px;
+      }}
+      .panel.collapsed {{
         width: auto;
       }}
+      .head {{
+        padding: 12px 12px 10px;
+      }}
+      h1 {{
+        font-size: 16px;
+        line-height: 1.15;
+      }}
+      .collapse,
+      .detail-close {{
+        width: 32px;
+        height: 32px;
+      }}
       .stats {{
-        grid-template-columns: 70px 1fr;
+        grid-template-columns: 68px 1fr;
+        gap: 6px;
+        margin-top: 10px;
+      }}
+      .stat-total {{
+        padding: 7px;
+      }}
+      .stat-total b {{
+        font-size: 21px;
+      }}
+      .stat-total span {{
+        font-size: 10px;
+      }}
+      .stat-total small {{
+        font-size: 8px;
+      }}
+      .charts {{
+        gap: 4px;
+      }}
+      .chart-card {{
+        grid-template-columns: 76px 1fr 39px;
+        gap: 6px;
+        min-height: 32px;
+        padding: 5px 7px;
+      }}
+      .chart-head {{
+        font-size: 9px;
       }}
       .controls {{
         grid-template-columns: 1fr;
+        gap: 7px;
+        padding: 10px 12px;
+      }}
+      input, select {{
+        min-height: 34px;
+        padding: 7px 9px;
+        font-size: 12px;
+      }}
+      .switches {{
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 1px;
+        font-size: 11px;
+      }}
+      .results {{
+        padding: 4px 0;
+      }}
+      .case {{
+        grid-template-columns: 15px 1fr;
+        gap: 8px;
+        padding: 8px 12px;
+      }}
+      .case-title {{
+        font-size: 12px;
+      }}
+      .case-place {{
+        font-size: 11px;
+      }}
+      .case-date {{
+        font-size: 10px;
       }}
       .detail-panel {{
-        left: 10px;
-        right: 10px;
+        left: 8px;
+        right: 8px;
         top: auto;
-        bottom: 10px;
-        max-height: 48vh;
+        bottom: 8px;
+        max-height: 44vh;
         width: auto;
+        border-radius: 8px;
+      }}
+      .detail-head {{
+        padding: 12px 12px 10px;
+      }}
+      .detail-title {{
+        font-size: 17px;
+      }}
+      .detail-body {{
+        padding: 11px 12px 14px;
+      }}
+      .detail-grid {{
+        gap: 6px;
+        margin-bottom: 10px;
+      }}
+      .detail-row {{
+        grid-template-columns: 62px 1fr;
+        gap: 7px;
+        font-size: 12px;
+        line-height: 1.3;
+      }}
+      .detail-summary-title {{
+        margin: 12px 0 6px;
+        font-size: 11px;
+      }}
+      .detail-summary {{
+        font-size: 13px;
+        line-height: 1.45;
       }}
     }}
   </style>
@@ -1187,6 +1291,10 @@ def render_html(
       els.detailBeings.textContent = point.tem_seres ? 'sim' : 'não';
       els.detailSummary.textContent = point.resumo || 'Resumo não informado.';
       els.detailPanel.classList.remove('hidden');
+      if (window.innerWidth <= 720 && !els.panel.classList.contains('collapsed')) {{
+        els.panel.classList.add('collapsed');
+        els.collapse.textContent = '+';
+      }}
       map.panTo([point.map_latitude, point.map_longitude], {{ animate: true }});
       setTimeout(() => map.invalidateSize({{ pan: false }}), 80);
     }}
